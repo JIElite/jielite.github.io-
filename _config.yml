@@ -44,6 +44,11 @@ minima:
 # Build settings
 theme: minima
 
+highlighter: rouge
+kramdown:
+    auto_ids: true
+    syntax_highlighter: rouge
+       
 plugins:
  - jekyll-feed
  - jekyll-seo-tag

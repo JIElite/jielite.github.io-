@@ -1,0 +1,10 @@
+I"F<p>過了許久，終於回來繼續寫Blog了。其實我一直都滿喜歡寫Blog的，但是之前礙於找不到好的blog system(懶得找？)遲遲沒有去更換。</p>
+
+<p>從一開始的<a href="https://jielite.blogspot.com/">Google blogger</a>，中間一度使用過Logdown，到近期很少寫的<a href="https://medium.com/@jiehanchen/">Meduim</a>。這些Blog System其實都不太適合我，一方面是因為Template能修改的東西不多，一方面是後來接觸Machine Learning，也想學著寫 (1+1)。把一直用貼圖的方式來呈現數學公式也很累人。</p>
+
+<p>最後，選擇了Jekyll。雖然目前的Template很簡易，不過我想夠用就好了！至於評論那些功能的話，後續有機會再慢慢更新。</p>
+
+<script type="math/tex; mode=display">\begin
+test = \log{10}
+\end</script>
+:ET
