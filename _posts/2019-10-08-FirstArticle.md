@@ -11,4 +11,4 @@ mathjax: true
 
 ---
 
-設定Mathjax參考到的reference: <https://lloyar.github.io/2018/10/08/mathjax-in-jekyll.html>
+設定Mathjax參考到的reference: <https://pkuwwt.github.io/linux/2013-12-03-jekyll-using-mathjax/>
