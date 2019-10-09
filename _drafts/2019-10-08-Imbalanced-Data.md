@@ -105,12 +105,13 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
     - $\small{0 <= m^{'} <= m/2}$: $p^{(i)}$ 附近都是相同類別的，所以應該不在邊界上。
     - $\small{m/2 <= m{'} <= m}$: 在 $p^{(i)}$ 附近有很多negative neighbors, 因此，這個 $p^{(i)}$ 值得參考，是在borderline，我們將這個樣本點加入到 $\mathcal{Danger}$。
     
-    <br />
-    Borderline-SMOTE1: 然後對 $\mathcal{Danger}$ 中的每一個樣本進行SMOTE演算法，這就是第一種Borderline-SMOTE了。
+    Borderline-SMOTE1: 然後對 $\mathcal{Danger}$ 中的每一個樣本對 $\mathcal{P}$ 計算KNN並進行SMOTE演算法，這就是第一種Borderline-SMOTE了。
 
-    Borderline-SMOTE2:
+    Borderline-SMOTE2: 因為目前在 $\mathcal{Danger}$ 的樣本點都是接近在邊線了，所以離邊線附近的negative points也很接近！那我們可不可以利用negative points來產生synthetic samples? Borderline-SMOTE2就是基於這樣的出發點設計出來的：利用 $\mathcal{N}$ 進行KNN並使用SMOTE產生synthetic samples。唯一的差別在於和 $\Delta$ 相乘的scalar $\eta$ 不再是從(0, 1)抽樣了，而是(0, 0.5)中抽樣，這樣會離邊線positive那一側較近。
 
-其餘還有`SVMSMOTE`, `ADASYN`, `Baysian Network/GAN`等oversampling的方法，有機會再額外介紹。
+    至於，Borderline-SMOTE1和Borderline-SMOTE2哪一個比較好？在論文中對於不同的資料集是各有優缺，但是都比原本的SMOTE來的好就是了。
+
+其餘的Oversampling方法還有`SVMSMOTE`, `ADASYN`, `Baysian Network/GAN`等，有機會再額外介紹。
 
 **Undersampling**
 - Tomek-Link
