@@ -37,9 +37,10 @@ $$ \Large{\frac{2}{\frac{1}{Recall} + \frac{1}{Precision}}} = 2 \cdot \large{\fr
 
 *Harmonic mean: <https://en.wikipedia.org/wiki/Harmonic_mean>*
 
-- ROC and AUC
+- ROC and AUC(*圖片以Undersampling為例*)
 
 ![](/assets/2019-10-08-Imbalanced-Data/roc.png)
+
 ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是在不同模型的情況下，我們要判別這個模型對於當前問題整體處理的效果是如何。
   - True Positive Rate(TPR, y-axis) = $TP/(TP+FN)$
   - False Positive Rate(FPR, x-axis) = $FP/(TN+FP)$
@@ -108,13 +109,24 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
     Borderline-SMOTE1: 然後對 $\mathcal{Danger}$ 中的每一個樣本對 $\mathcal{P}$ 計算KNN並進行SMOTE演算法，這就是第一種Borderline-SMOTE了。
 
     Borderline-SMOTE2: 因為目前在 $\mathcal{Danger}$ 的樣本點都是接近在邊線了，所以離邊線附近的negative points也很接近！那我們可不可以利用negative points來產生synthetic samples? Borderline-SMOTE2就是基於這樣的出發點設計出來的：利用 $\mathcal{N}$ 進行KNN並使用SMOTE產生synthetic samples。唯一的差別在於和 $\Delta$ 相乘的scalar $\eta$ 不再是從(0, 1)抽樣了，而是(0, 0.5)中抽樣，這樣會離邊線positive那一側較近。
+    
+    *我讀到這邊的時候，在想他是怎麼分配抽樣 $\mathcal{P}$ 和抽樣 $\mathcal{N}$的比例，有想過一種實作方式是我們直接對 $\mathcal{T}$做KNN，然後我們有會知道k samples的label, 單純從k samples抽樣的時候去選擇random scalar，像是 `upper_bound = 1 if sample is positive else 0.5` 然後再 `random(0, upper_bound)`。*
 
     至於，Borderline-SMOTE1和Borderline-SMOTE2哪一個比較好？在論文中對於不同的資料集是各有優缺，但是都比原本的SMOTE來的好就是了。
 
 其餘的Oversampling方法還有`SVMSMOTE`, `ADASYN`, `Baysian Network/GAN`等，有機會再額外介紹。
 
 **Undersampling**
-- Tomek-Link
+  - The Condensed Nearest Neighbors Rule(1968)
+  
+    Condensed Nearest Neighbors是很早期的方法(雖然說後面的方法也沒有多近期)，背後核心的演算法是1-Nearest Neighbors。參考imblearn的文件，在imbalanced data的情境下，原本就是binary classification problem，所以我們可以初始化 $\mathcal{C} = \mathcal{D_{minority}}, ~\mathcal{S} = \mathcal{D_{majority}}$。為了要讓 $\mid\mathcal{S}\mid$ 有機會利用1-NN來減少，首先會在 $\mathcal{S}$ 中隨機挑一個樣本 $s^{(c)}$ 加入到 $\mathcal{C}$，被挑選出來的樣本目前不會從 $\mathcal{S}$ 中移除，先對 $\mathcal{C}$ 訓練一個1-NN model。然後把 $\mathcal{S}$ 的每一個樣本 $s^{(i)}$ 利用1-NN model進行分類，比較預測值和他的標記Label，如果預測值和Label不同就把這個 $s^{(i)}$ 從 $\mathcal{S}$ 中移除，並加入到 $\mathcal{C}$。當遍歷整個 $\mathcal{S}$ 的時候演算法就結束了。基於這樣逐漸擴大 $\mathcal{C}$ 的方式會受到一開始隨機的 $s^{(c)}$ 影響很大。 
+
+    *這是1968年提出的方法了，當時也許不是拿來處理imbalanced data的問題，因為我自己是找不太到原始論文的內容，無法知道當初的出發點是什麼。CNN應該是比較廣泛的方法，只是剛好可以應用在Imbalanced data上面，不過他的計算量也確實很驚人。如果想知道實做方法可以看這邊[imblearn source code](https://github.com/scikit-learn-contrib/imbalanced-learn/blob/12b2e0d/imblearn/under_sampling/_prototype_selection/_condensed_nearest_neighbour.py#L152)直接看程式碼的註解就可以知道演算法架構，此外[Wikipedia](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#CNN_for_data_reduction)中有更詳細的介紹*
+    
+- Tomek Links(T-Links)
+
+    為了解決CNN一開始挑選到不好的 $s^{(c)}$ 的問題，Ian Tomek 想了一些方法來改善，並且Tomek Links是現在常見處理不平衡資料的方式。
+
 - One-sided selection
 - Informed Undersampling
 - NearMiss
@@ -145,7 +157,7 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
 - [SMOTE: Synthetic Minority Over-sampling Technique, JAIR 2002](https://arxiv.org/pdf/1106.1813.pdf)
 - [Borderline-SMOTE: A New Over-Sampling Method in
 Imbalanced Data Sets Learning](https://sci2s.ugr.es/keel/keel-dataset/pdfs/2005-Han-LNCS.pdf)
-
+- [Two Modifications of CNN, Ivan Tomek, 1976](https://www.semanticscholar.org/paper/Two-Modifications-of-CNN-Tomek/090a6772a1d69f07bfe7e89f99934294a0dac1b9)
 
 ## Reference:
 - [大鼻David's Perspective: 不平衡資料的二元分類](https://taweihuang.hpd.io/2018/12/28/imbalanced-data-performance-metrics/)
