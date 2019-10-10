@@ -49,9 +49,9 @@ permalink: pretty
 
 highlighter: rouge
 kramdown:
-    input: GFM
-    auto_ids: true
-    syntax_highlighter: rouge
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
           
 plugins:
  - jekyll-feed
