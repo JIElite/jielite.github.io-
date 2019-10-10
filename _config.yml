@@ -19,7 +19,7 @@ minima:
     # facebook: jekyll
     # flickr:   jekyll
     # instagram: jekyll
-    linkedin:  jie-han-chen-325620a3
+    # linkedin:  jie-han-chen-325620a3
     # pinterest: jekyll
     # youtube: jekyll
     # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g
@@ -43,6 +43,9 @@ minima:
 
 # Build settings
 theme: minima
+
+markdown: kramdown
+permalink: pretty
 
 highlighter: rouge
 kramdown:
