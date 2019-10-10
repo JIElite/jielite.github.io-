@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
@@ -16,13 +17,14 @@ layout: default
       {%- endif -%}</p>
   </header>
 
-  <!-- Mathjax Support -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  <!--Mathjax-->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async>
+    </script>
 
   {%- if site.disqus.shortname -%}
   {%- include disqus_comments.html -%}
