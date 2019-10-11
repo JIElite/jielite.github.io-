@@ -125,7 +125,7 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
     
 - Tomek Links(T-Links)
 
-    為了解決CNN一開始挑選到不好的 \\(s^{(c)}\\) 的問題，Ian Tomek 想了一些方法來改善，並且Tomek Links是現在常見處理不平衡資料的方式。
+    為了解決CNN一開始挑選到不好的 $s^{(c)}$ 的問題，Ian Tomek 想了一些方法來改善，並且Tomek Links是現在常見處理不平衡資料的方式。
 
 - One-sided selection
 - Informed Undersampling
