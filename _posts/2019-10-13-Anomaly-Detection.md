@@ -206,7 +206,7 @@ Multivariate Model: 因為要計算 $\Sigma^{-1}$ 的關係，需要確保：$\S
 1. Check m >= n
 2. Check for redundant features.
 
-- \# of parameters: $\frac{n^2}{n} + n$, 因為 $\Sigma_{ij} = \Sigma_{ji}$
+- \# of parameters: $\frac{n^2}{2} + n$, 因為 $\Sigma_{ij} = \Sigma_{ji}$
 
 ## 結語
 這個課程雖然只有一小時，可是裡面涵蓋的內容十分有架構，Andrew Ng說明的也很清楚，把一般會想到的疑問: Anomaly Detection vs. Supervised Learning, Features Engineering, Original Gaussian Model vs. Multivariate Gaussian都涵蓋了。謝謝 Andrew Ng老師在Coursera上開課。
