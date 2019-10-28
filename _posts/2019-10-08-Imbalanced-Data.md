@@ -127,9 +127,22 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
 
     為了解決CNN一開始挑選到不好的 $s^{(c)}$ 的問題，Ivan Tomek 想了一些方法來改善，並且Tomek Links是現在常見處理不平衡資料的方式。
 
-- One-sided selection
-- Informed Undersampling
-- NearMiss
+    Tomek Link主要做的是希望找到 decision boundary 附近的點，並且組成一個 pair 同時包含 (positive point, negative point)。我們假設找出的點是: $x_i, x_j$, 他們之間的距離(distance) 為 $d(x_i, x_j)$。則 Tomek Link 之間不會有一點使得 $d(x_i, x_k) < d(x_i, x_j)$或是$d(x_j, x_k) < d(x_i, x_j)$。
+
+    以下是`imblearn`中的例子([link](https://imbalanced-learn.readthedocs.io/en/stable/auto_examples/under-sampling/plot_illustration_tomek_links.html#illustration-of-the-definition-of-a-tomek-link)):
+    ![](https://imbalanced-learn.readthedocs.io/en/stable/_images/sphx_glr_plot_illustration_tomek_links_001.png)
+    
+    ![](https://imbalanced-learn.readthedocs.io/en/stable/_images/sphx_glr_plot_illustration_tomek_links_002.png)
+
+    Tomek Link因為是Unsampling的方法，所以主要還是降低 $|D_{majority}|$，但是有兩種方式:
+
+    - 移除完整的 Tomek Link Pair
+    - 只移除 Majority point
+
+    我自己是認為移除 Tomek Link 整個 Pair 對 Decision Boundary 的選擇是更嚴苛的一種方式，可能學出來的會比較平滑。由於對資料的嗅覺還不敏銳，如果是我的話，可能兩種都會嘗試看看吧。
+
+
+其餘有One-sided selection, Informed Undersampling, NearMiss等等方法，有機會再介紹。
 
 **The cross validation on undersampling**
 
