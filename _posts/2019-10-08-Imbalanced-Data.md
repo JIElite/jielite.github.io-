@@ -144,6 +144,7 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
 
 其餘有One-sided selection, Informed Undersampling, NearMiss等等方法，有機會再介紹。
 
+
 ## Algorithm Perspective
 - Boosting: Adaboost -> 效果不好
 - Xgboost?
@@ -153,7 +154,9 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
 - Cost-sensitive Learning Algorithm
 
 ## Anomaly detection
-- 像是在偵測outliers一樣嗎？
+此外，我們也可以從Anomaly Detection的角度來看Imbalaced data的問題。但是Anomaly Detection比較像是從semi-supervised learning/unsupervised learning看問題。最大的差別我認為是：即便是Imbalanced data problem, 少數類別的資料比較少，但仍然還是可以完整反應出少數類別的資訊。Anomaly Detecion在處理的問題則是：對於未來的異常不能先進一步由人的角度知道他們的一些歸類、規則。
+
+如果對Anomaly Detection有興趣的話，可以先去看Andrew Ng在Coursera上的課程。此外，針對那個課程我也有做一些[簡單的筆記](https://jielite.github.io/2019/10/13/Anomaly-Detection/)。
 
 
 最後，十分推薦imblearn這個package的網站，裡面可以看到許多examples: <https://imbalanced-learn.readthedocs.io/en/stable/auto_examples/index.html>，裡面有很多處理imbalanced data的例子，從API也可以得知常用的metrics&algorithm。
