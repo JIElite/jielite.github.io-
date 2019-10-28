@@ -134,7 +134,7 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
     
     ![](https://imbalanced-learn.readthedocs.io/en/stable/_images/sphx_glr_plot_illustration_tomek_links_002.png)
 
-    Tomek Link因為是Unsampling的方法，所以主要還是降低 $|D_{majority}|$，但是有兩種方式:
+    Tomek Link因為是Unsampling的方法，所以主要還是降低 $\mid D_{majority} \mid$，但是有兩種方式:
 
     - 移除完整的 Tomek Link Pair
     - 只移除 Majority point
@@ -144,12 +144,9 @@ ROC以及AUC對於Imbalanced data同樣是常用的evaluation method。尤其是
 
 其餘有One-sided selection, Informed Undersampling, NearMiss等等方法，有機會再介紹。
 
-**The cross validation on undersampling**
-
 ## Algorithm Perspective
 - Boosting: Adaboost -> 效果不好
 - Xgboost?
-**Ensemble method**
 
 ## Change loss function
 - Weighting Strategy
@@ -182,3 +179,6 @@ Imbalanced Data Sets Learning](https://sci2s.ugr.es/keel/keel-dataset/pdfs/2005-
 
 others: latex size: http://www.sascha-frank.com/latex-font-size.html
 
+## 遺珠之憾 & Other issues:
+1. Cross validation on undersampling
+2. Data Imbalanced resisted ML method
